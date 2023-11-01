@@ -158,6 +158,11 @@ public class GeneratorServiceImpl implements GeneratorService {
 		DataSourceEntity dataSource = datasourceService.getById(table.getDatasourceId());
 		dataModel.put("connName", dataSource.getConnName());
 
+		//RequestMapping 路径
+		String className = (String) dataModel.get("className");
+		String requestMapping = StrUtil.toUnderlineCase(className).replace("_", "/");
+		dataModel.put("requestMapping", requestMapping);
+
 		return dataModel;
 	}
 
