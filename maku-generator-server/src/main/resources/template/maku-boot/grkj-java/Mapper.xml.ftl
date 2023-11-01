@@ -5,8 +5,14 @@
 
     <resultMap type="${package}.entity.${ClassName}" id="${className}Map">
         <#list fieldList as field>
-        <result property="${field.attrName}" column="${field.fieldName}"/>
+            <result property="${field.attrName}" column="${field.fieldName}"/>
         </#list>
     </resultMap>
 
+    <select id="pageList" resultType="${package}.entity.${ClassName}">
+        SELECT * FROM ${connName}.${tableName}
+        <where>
+            DEL_FLAG = 0
+        </where>
+    </select>
 </mapper>
