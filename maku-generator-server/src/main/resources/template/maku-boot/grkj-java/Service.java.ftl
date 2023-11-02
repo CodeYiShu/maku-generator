@@ -24,7 +24,7 @@ import java.util.List;
 @Service
 public class ${ClassName}Service implements BaseMapperCurdService<${ClassName}> {
     @Autowired
-    private EquipSonMapper mapper;
+    private ${ClassName}Mapper mapper;
 
     @Autowired
     private KeyGenerator<String> keyGenerator;
