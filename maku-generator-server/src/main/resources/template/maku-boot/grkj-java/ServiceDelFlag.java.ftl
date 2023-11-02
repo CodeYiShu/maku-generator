@@ -8,6 +8,7 @@ import com.grkj.lib.page.entity.PageResponseMessage;
 import com.grkj.lib.keyGenerator.KeyGenerator;
 import com.grkj.modules.sys.utils.UserUtils;
 import com.grkj.common.base2.impl.service.BaseMapperCurdService;
+import com.grkj.common.enums.DelFlagEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.common.Mapper;
@@ -37,6 +38,7 @@ public class ${ClassName}Service implements BaseMapperCurdService<${ClassName}> 
     @Override
     public boolean preInsert(${ClassName} data) {
         data.setId(keyGenerator.getNext());
+        data.setDelFlag(DelFlagEnum.NO_DELETE.getCode());
         data.setCreateTime(new Date());
         data.setCreateUser(UserUtils.getUser().getName());
         data.setUpdateTime(new Date());
@@ -49,9 +51,26 @@ public class ${ClassName}Service implements BaseMapperCurdService<${ClassName}> 
         ${ClassName} dbData = mapper.selectByPrimaryKey(data.getId());
         data.setCreateUser(dbData.getCreateUser());
         data.setCreateTime(dbData.getCreateTime());
+        data.setDelFlag(DelFlagEnum.NO_DELETE.getCode());
         data.setUpdateTime(new Date());
         data.setUpdateUser(UserUtils.getUser().getName());
         return true;
+    }
+
+    @Override
+    public Integer deleteById(Object id) {
+        //逻辑删除
+        ${ClassName} entity = mapper.selectByPrimaryKey(id);
+        entity.setDelFlag(DelFlagEnum.HAS_DELETE.getCode());
+        entity.setUpdateTime(new Date());
+        entity.setUpdateUser(UserUtils.getUser().getName());
+        int result = 0;
+        if (preDelete(id)) {
+            //更新 delFlag 字段为 1
+            result = mapper.updateByPrimaryKeySelective(entity);
+            afterDelete(id);
+        }
+        return result;
     }
 
     /**
