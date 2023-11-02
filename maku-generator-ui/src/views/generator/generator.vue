@@ -32,8 +32,8 @@
           </el-form-item>
         </el-col>
         <el-col :span="12">
-          <el-form-item label="功能名" prop="functionName">
-            <el-input v-model="dataForm.functionName" placeholder="功能名"></el-input>
+          <el-form-item label="版本号" prop="version">
+            <el-input v-model="dataForm.version" placeholder="版本号"></el-input>
           </el-form-item>
         </el-col>
       </el-row>
@@ -46,20 +46,6 @@
         <el-col :span="12">
           <el-form-item label="作者邮箱" prop="email">
             <el-input v-model="dataForm.email" placeholder="作者邮箱"></el-input>
-          </el-form-item>
-        </el-col>
-      </el-row>
-      <el-row>
-        <el-col :span="12">
-          <el-form-item prop="baseclassId" label="继承">
-            <el-select v-model="dataForm.baseclassId" placeholder="继承" style="width: 100%" clearable>
-              <el-option v-for="item in baseClassList" :key="item.id" :label="item.code" :value="item.id"></el-option>
-            </el-select>
-          </el-form-item>
-        </el-col>
-        <el-col :span="12">
-          <el-form-item label="版本号" prop="version">
-            <el-input v-model="dataForm.version" placeholder="版本号"></el-input>
           </el-form-item>
         </el-col>
       </el-row>
@@ -81,11 +67,8 @@
           </el-form-item>
         </el-col>
       </el-row>
-      <el-form-item v-if="dataForm.generatorType === 1" label="后端生成路径" prop="backendPath">
-        <el-input v-model="dataForm.backendPath" placeholder="后端生成路径"></el-input>
-      </el-form-item>
-      <el-form-item v-if="dataForm.generatorType === 1" label="前端生成路径" prop="frontendPath">
-        <el-input v-model="dataForm.frontendPath" placeholder="前端生成路径"></el-input>
+      <el-form-item v-if="dataForm.generatorType === 1" label="生成路径" prop="backendPath">
+        <el-input v-model="dataForm.backendPath" placeholder="生成路径"></el-input>
       </el-form-item>
     </el-form>
     <template #footer>
@@ -99,7 +82,6 @@
 <script setup lang="ts">
 import {reactive, ref} from 'vue'
 import {ElMessage} from 'element-plus/es'
-import {useBaseClassListApi} from '@/api/baseClass'
 import {useDownloadApi, useGeneratorApi} from '@/api/generator'
 import {useTableApi, useTableSubmitApi} from '@/api/table'
 
@@ -107,20 +89,16 @@ const emit = defineEmits(['refreshDataList'])
 
 const visible = ref(false)
 const dataFormRef = ref()
-const baseClassList = ref<any[]>([])
 const dataForm = reactive({
   id: '',
-  baseclassId: '',
-  generatorType: 0,
+  generatorType: 1,
   formLayout: 1,
   backendPath: '',
-  frontendPath: '',
   packageName: '',
   email: '',
   author: '',
   version: '',
   moduleName: '',
-  functionName: '',
   className: '',
   tableComment: '',
   tableName: '',
@@ -136,14 +114,7 @@ const init = (id: number) => {
     dataFormRef.value.resetFields()
   }
 
-  getBaseClassList()
   getTable(id)
-}
-
-const getBaseClassList = () => {
-  useBaseClassListApi().then(res => {
-    baseClassList.value = res.data
-  })
 }
 
 const getTable = (id: number) => {
@@ -157,13 +128,9 @@ const dataRules = ref({
   tableComment: [{required: true, message: '必填项不能为空', trigger: 'blur'}],
   className: [{required: true, message: '必填项不能为空', trigger: 'blur'}],
   packageName: [{required: true, message: '必填项不能为空', trigger: 'blur'}],
-  //author: [{required: true, message: '必填项不能为空', trigger: 'blur'}],
-  //moduleName: [{ required: true, message: '必填项不能为空', trigger: 'blur' }],
-  //functionName: [{ required: true, message: '必填项不能为空', trigger: 'blur' }],
   generatorType: [{required: true, message: '必填项不能为空', trigger: 'blur'}],
   formLayout: [{required: true, message: '必填项不能为空', trigger: 'blur'}],
   backendPath: [{required: true, message: '必填项不能为空', trigger: 'blur'}],
-  frontendPath: [{required: true, message: '必填项不能为空', trigger: 'blur'}]
 })
 
 // 保存
