@@ -16,42 +16,42 @@ import java.nio.charset.StandardCharsets;
  * <a href="https://maku.net">MAKU</a>
  */
 public class GeneratorConfig {
-    private String template;
+	private String template;
 
-    public GeneratorConfig(String template) {
-        this.template = template;
-    }
+	public GeneratorConfig(String template) {
+		this.template = template;
+	}
 
-    public GeneratorInfo getGeneratorConfig() {
-        // 模板路径，如果不是以/结尾，则添加/
-        if (!StrUtil.endWith(template, '/')) {
-            template = template + "/";
-        }
+	public GeneratorInfo getGeneratorConfig() {
+		// 模板路径，如果不是以/结尾，则添加/
+		if (!StrUtil.endWith(template, '/')) {
+			template = template + "/";
+		}
 
-        // 模板配置文件
-        InputStream isConfig = this.getClass().getResourceAsStream(template + "config.json");
-        if (isConfig == null) {
-            throw new ServerException("模板配置文件，config.json不存在");
-        }
+		// 模板配置文件
+		InputStream isConfig = this.getClass().getResourceAsStream(template + "config_grkj.json");
+		if (isConfig == null) {
+			throw new ServerException("模板配置文件，config.json不存在");
+		}
 
-        try {
-            // 读取模板配置文件
-            String configContent = StreamUtils.copyToString(isConfig, StandardCharsets.UTF_8);
-            GeneratorInfo generator = JsonUtils.parseObject(configContent, GeneratorInfo.class);
-            for (TemplateInfo templateInfo : generator.getTemplates()) {
-                // 模板文件
-                InputStream isTemplate = this.getClass().getResourceAsStream(template + templateInfo.getTemplateName());
-                if (isTemplate == null) {
-                    throw new ServerException("模板文件 " + templateInfo.getTemplateName() + " 不存在");
-                }
-                // 读取模板内容
-                String templateContent = StreamUtils.copyToString(isTemplate, StandardCharsets.UTF_8);
+		try {
+			// 读取模板配置文件
+			String configContent = StreamUtils.copyToString(isConfig, StandardCharsets.UTF_8);
+			GeneratorInfo generator = JsonUtils.parseObject(configContent, GeneratorInfo.class);
+			for (TemplateInfo templateInfo : generator.getTemplates()) {
+				// 模板文件
+				InputStream isTemplate = this.getClass().getResourceAsStream(template + templateInfo.getTemplateName());
+				if (isTemplate == null) {
+					throw new ServerException("模板文件 " + templateInfo.getTemplateName() + " 不存在");
+				}
+				// 读取模板内容
+				String templateContent = StreamUtils.copyToString(isTemplate, StandardCharsets.UTF_8);
 
-                templateInfo.setTemplateContent(templateContent);
-            }
-            return generator;
-        } catch (IOException e) {
-            throw new ServerException("读取config.json配置文件失败");
-        }
-    }
+				templateInfo.setTemplateContent(templateContent);
+			}
+			return generator;
+		} catch (IOException e) {
+			throw new ServerException("读取config.json配置文件失败");
+		}
+	}
 }

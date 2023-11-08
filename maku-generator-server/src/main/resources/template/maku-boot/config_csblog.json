@@ -1,0 +1,42 @@
+{
+  "project": {
+    "packageName": "com.codeshu",
+    "version": "1.0.0",
+    "backendPath": "C:\\Users\\angus\\Desktop\\新建文件夹",
+    "frontendPath": "C:\\Users\\angus\\Desktop\\新建文件夹"
+  },
+  "developer": {
+    "author": "CodeShu",
+    "email": "13828965090@136.com"
+  },
+  "templates": [
+    {
+      "templateName": "csblog-java/Controller.java.ftl",
+      "generatorPath": "${backendPath}/src/main/java/${packagePath}/controller/${ClassName}Controller.java"
+    },
+    {
+      "templateName": "csblog-java/Service.java.ftl",
+      "generatorPath": "${backendPath}/src/main/java/${packagePath}/service/${ClassName}Service.java"
+    },
+    {
+      "templateName": "csblog-java/ServiceImpl.java.ftl",
+      "generatorPath": "${backendPath}/src/main/java/${packagePath}/service/impl/${ClassName}ServiceImpl.java"
+    },
+    {
+      "templateName": "csblog-java/Entity.java.ftl",
+      "generatorPath": "${backendPath}/src/main/java/${packagePath}/entity/${ClassName}Entity.java"
+    },
+    {
+      "templateName": "csblog-java/Mapper.java.ftl",
+      "generatorPath": "${backendPath}/src/main/java/${packagePath}/mapper/${ClassName}Mapper.java"
+    },
+    {
+      "templateName": "csblog-java/Mapper.xml.ftl",
+      "generatorPath": "${backendPath}/src/main/java/${packagePath}/mapper/${ClassName}Mapper.xml"
+    },
+    {
+      "templateName": "csblog-java/GetListRequest.java.ftl",
+      "generatorPath": "${backendPath}/src/main/java/${packagePath}/request/${ClassName}GetListRequest.java"
+    }
+  ]
+}
