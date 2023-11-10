@@ -1,7 +1,7 @@
 package ${package}.service;
 
 import ${package}.entity.${ClassName};
-import ${package}.mapper.${ClassName}Mapper;
+import ${package}.dao.${ClassName}Mapper;
 import ${package}.request.${ClassName}GetListRequest;
 import com.grkj.common.utils.MessagePageHelper;
 import com.grkj.lib.page.entity.PageResponseMessage;

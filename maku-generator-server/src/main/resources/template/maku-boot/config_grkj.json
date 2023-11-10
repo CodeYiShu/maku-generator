@@ -15,7 +15,7 @@
       "generatorPath": "${backendPath}/src/main/java/${packagePath}/controller/${ClassName}Controller.java"
     },
     {
-      "templateName": "grkj-java/Service.java.ftl",
+      "templateName": "grkj-java/ServiceDelFlag.java.ftl",
       "generatorPath": "${backendPath}/src/main/java/${packagePath}/service/${ClassName}Service.java"
     },
     {
