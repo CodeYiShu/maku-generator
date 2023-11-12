@@ -13,7 +13,7 @@ import lombok.EqualsAndHashCode;
 */
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class ${ClassName}GetListRequest extends PageBaseRequest implements java.io.Serializable {
+public class ${ClassName}PageListRequest extends PageBaseRequest implements java.io.Serializable {
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty("查询字段")

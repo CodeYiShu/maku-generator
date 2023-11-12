@@ -8,4 +8,10 @@
             <result property="${field.attrName}" column="${field.fieldName}"/>
         </#list>
     </resultMap>
+
+    <select id="pageList" resultType="${package}.entity.${ClassName}Entity">
+        SELECT * FROM ${tableName}
+        <where>
+        </where>
+    </select>
 </mapper>

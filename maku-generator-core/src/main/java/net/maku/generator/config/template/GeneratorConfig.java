@@ -29,7 +29,7 @@ public class GeneratorConfig {
 		}
 
 		// 模板配置文件
-		InputStream isConfig = this.getClass().getResourceAsStream(template + "config_grkj.json");
+		InputStream isConfig = this.getClass().getResourceAsStream(template + "config_csblog.json");
 		if (isConfig == null) {
 			throw new ServerException("模板配置文件，config.json不存在");
 		}

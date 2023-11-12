@@ -35,8 +35,8 @@
       "generatorPath": "${backendPath}/src/main/java/${packagePath}/mapper/${ClassName}Mapper.xml"
     },
     {
-      "templateName": "csblog-java/GetListRequest.java.ftl",
-      "generatorPath": "${backendPath}/src/main/java/${packagePath}/request/${ClassName}GetListRequest.java"
+      "templateName": "csblog-java/PageListRequest.java.ftl",
+      "generatorPath": "${backendPath}/src/main/java/${packagePath}/request/${ClassName}PageListRequest.java"
     }
   ]
 }

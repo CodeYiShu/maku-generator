@@ -19,7 +19,7 @@ import java.util.List;
 
 import ${package}.entity.${ClassName}Entity;
 import ${package}.service.${ClassName}Service;
-import ${package}.request.${ClassName}GetListRequest;
+import ${package}.request.${ClassName}PageListRequest;
 
 /**
 * ${tableComment} 控制层
@@ -34,11 +34,11 @@ public class ${ClassName}Controller {
     @Autowired
     private ${ClassName}Service service;
 
-    @GetMapping("/getAll")
+    @GetMapping("/pageList")
     @ApiOperation("查询所有")
-    public Result getAll(${ClassName}GetListRequest request) {
+    public Result getAll(${ClassName}PageListRequest request) {
         PageHelper.startPage(request.getPageNum(), request.getPageSize());
-        List<${ClassName}Entity> entityList = service.list();
+        List<${ClassName}Entity> entityList = service.pageList(request);
         PageInfo<${ClassName}Entity> page = new PageInfo<>(entityList);
         return Result.success(page);
     }
