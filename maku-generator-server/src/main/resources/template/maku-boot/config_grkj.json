@@ -24,11 +24,11 @@
     },
     {
       "templateName": "grkj-java/Mapper.java.ftl",
-      "generatorPath": "${backendPath}/src/main/java/${packagePath}/mapper/${ClassName}Mapper.java"
+      "generatorPath": "${backendPath}/src/main/java/${packagePath}/dao/${ClassName}Mapper.java"
     },
     {
       "templateName": "grkj-java/Mapper.xml.ftl",
-      "generatorPath": "${backendPath}/src/main/java/${packagePath}/mapper/${ClassName}Mapper.xml"
+      "generatorPath": "${backendPath}/src/main/java/${packagePath}/dao/${ClassName}Mapper.xml"
     },
     {
       "templateName": "grkj-java/GetListRequest.java.ftl",
